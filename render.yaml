@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: bug-hunter
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    pullRequestPreviewsEnabled: false
+    routes:
+      # The old page address keeps working.
+      - type: rewrite
+        source: /game.html
+        destination: /index.html
+    headers:
+      - path: /images/*
+        name: Cache-Control
+        value: public, max-age=604800
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable

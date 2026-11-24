@@ -1,0 +1,27 @@
+{
+  "name": "bug-hunter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BUG HUNTER: an action roguelite and tactical auto-battler for the browser.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.json && vite build && node scripts/check-public.mjs",
+    "preview": "vite preview",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "node scripts/check-regressions.mjs && node --test tests/siege.test.mjs tests/siege-legacy.test.mjs tests/skins.test.mjs",
+    "test:shop": "node scripts/check-shop.mjs"
+  },
+  "dependencies": {
+    "jsqr": "^1.4.0",
+    "peerjs": "^1.5.5",
+    "qrcode-generator": "^2.0.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "typescript": "~5.8.3",
+    "vite": "~6.4.5"
+  },
+  "license": "UNLICENSED"
+}
