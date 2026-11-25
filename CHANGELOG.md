@@ -4,6 +4,14 @@
 
 This changelog tracks game-version changes starting with v1.12.55. Earlier releases are not reconstructed here.
 
+## 1.16.52 - 2026-11-25
+
+- Moving a saved game works the way it looks:
+  - Messages over menus are seen: the toast sat under every screen, so after «Copy my game» nothing seemed to happen (the game was copied). It is drawn over them now.
+  - «Copy my game» opens a card, «Game copied!», saying what to do next, with Got it.
+  - A Paste button reads what was copied and loads it at once (to the «Load this game?» question); if the browser will not let the game read it, it says to touch and hold the box and paste.
+  - Checked on a phone-sized browser: a game copied on one device, pasted with Paste on another, arrived with its name and coins.
+
 ## 1.16.51 - 2026-11-25
 
 - «Open Cartoon Siege apart ↗» opens Cartoon Siege on its front page (logo, Play, what the game is), still in the game's language and with the Siege progress handed over; it used to skip it and drop the player straight onto the world map (`?play`).

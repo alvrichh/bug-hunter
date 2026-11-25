@@ -1265,6 +1265,7 @@ function transferScreen(note = '') {
     <textarea class="transfer-code" id="transferOut" readonly hidden aria-label="${t('transferOut')}"></textarea>
     <h3 class="slot">${t('transferIn')}</h3>
     <textarea class="transfer-code" id="transferIn" rows="3" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="BH1:…" aria-label="${t('transferIn')}"></textarea>
+    <button class="primary" type="button" data-act="transfer-paste">${t('transferPaste')}</button>
     <button class="primary is-purple" type="button" data-act="transfer-load">${t('transferLoad')}</button>
     <button class="primary is-blue" type="button" data-act="options-keep">← ${t('options')}</button>`);
   transferCode = '';
@@ -1276,8 +1277,23 @@ function transferCopy() {
   const out = document.getElementById('transferOut') as HTMLTextAreaElement | null;
   // Shown as well, so it can be copied by hand if the phone will not.
   const showCode = () => { if (out) { out.hidden = false; out.value = code; out.focus(); out.select(); } };
-  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(code).then(() => flash(t('transferCopied')), () => { showCode(); flash(t('transferSelect')); });
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(code).then(transferCopied, () => { showCode(); flash(t('transferSelect')); });
   else { showCode(); flash(t('transferSelect')); }
+}
+/** Copied: a card says so and what to do next (a toast was too easy to miss). */
+function transferCopied() {
+  show(`<h2>${t('transferCopiedTitle')}</h2>
+    <p class="how">${t('transferCopied')}</p>
+    <button class="primary" type="button" data-act="transfer">${t('transferOk')}</button>`);
+}
+/** Pastes what was copied into the box and reads it at once (the browser may ask first; if it refuses, by hand). */
+async function transferPaste() {
+  const box = document.getElementById('transferIn') as HTMLTextAreaElement | null;
+  try {
+    const text = await navigator.clipboard.readText();
+    if (box) box.value = text.trim();
+    if (text.trim()) await transferLoad(); else flash(t('transferBad'));
+  } catch { box?.focus(); flash(t('transferPasteFail')); }
 }
 async function transferLoad() {
   const raw = (document.getElementById('transferIn') as HTMLTextAreaElement | null)?.value ?? '';
@@ -3542,6 +3558,7 @@ screen.addEventListener('click', (event) => {
   else if (act === 'options-keep') optionsScreen();
   else if (act === 'transfer-copy') transferCopy();
   else if (act === 'transfer-load') void transferLoad();
+  else if (act === 'transfer-paste') void transferPaste();
   else if (act === 'transfer-yes' && transferIn) {
     netLeave();
     lockSave();
