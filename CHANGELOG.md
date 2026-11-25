@@ -4,6 +4,10 @@
 
 This changelog tracks game-version changes starting with v1.12.55. Earlier releases are not reconstructed here.
 
+## 1.16.51 - 2026-11-25
+
+- «Open Cartoon Siege apart ↗» opens Cartoon Siege on its front page (logo, Play, what the game is), still in the game's language and with the Siege progress handed over; it used to skip it and drop the player straight onto the world map (`?play`).
+
 ## 1.16.50 - 2026-11-24
 
 - Siege Cartoon: a battle's result is a story card like the dialogues: the world's picture behind, the parchment panel (the dark one for a lost battle) and the Captain beside it, in his blow's pose when the fortress falls and hurt when ours does; the title big in green or red, the text lettered white with a black outline. Same buttons as before. Duels keep the plain dialog.
