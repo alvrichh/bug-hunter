@@ -7,7 +7,7 @@
 Action roguelite + tactical auto-battler by **Álvaro Rodríguez Molina**, playable in the browser on mobile and desktop.
 
 <p align="center">
-  <strong><a href="https://alvrich.vercel.app/game.html">Play BUG HUNTER</a></strong>
+  <strong><a href="https://bug-hunter-game.onrender.com/">Play BUG HUNTER</a></strong>
 </p>
 
 **[Release history](./CHANGELOG.md) · [Asset guide](./docs/assets.md) · [Browse assets](./assets/) · [Source code](./src/) · [Documentation](./docs/) · [Repository structure](./docs/structure.md)**
