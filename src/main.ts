@@ -154,6 +154,8 @@ const MODES: PlayMode[] = ['sprints', 'horde', 'board'];
 let extraModePreview = window.matchMedia('(orientation: landscape) and (max-height: 500px)').matches;
 const coverModes = [...MODES, 'coming-soon'] as const;
 /** The last slot of the cover's carousel: Siege, the new mode (it used to be Coming Soon, with Fortress beside it). */
+/** Where «back» goes: the portfolio. The same code runs inside it (at /game.html) and on the game's own site. */
+const HOME = location.pathname.endsWith('/game.html') && !location.hostname.endsWith('onrender.com') ? './index.html' : 'https://alvrich.vercel.app/';
 const extraTitle = () => t('siegeName');
 const extraText = () => t('siegeHubModes');
 const NIGHTMARE_ICON = '☠️';
@@ -495,7 +497,7 @@ function menuScreen() {
   const copy = (cls: string, title: string, sub: string) => `<span class="cover-card-copy ${cls}"><b>${title}</b>${sub ? `<small>${sub}</small>` : ''}</span>`;
   show(`
     <div class="cover">
-      <a class="hot cover-x" href="https://alvrich.vercel.app/" aria-label="${t('back')}"></a>
+      <a class="hot cover-x" href="${HOME}" aria-label="${t('back')}"></a>
       <button class="hot cover-more" data-act="options" aria-label="${t('options')}"></button>
       <div class="cover-in">
       <button class="cover-book${save.bookSeen ? '' : ' is-first'}" type="button" data-act="book" aria-label="${t('bookOpen')}"><img src="./images/game/items/seniorTome.webp" alt=""></button>
@@ -3707,7 +3709,7 @@ screen.addEventListener('click', (event) => {
     menuScreen();
   } else if (act === 'leave-site') {
     if (game) { bankRun(game); persist(); }
-    location.href = 'https://alvrich.vercel.app/';
+    location.href = HOME;
   } else if (act === 'menu') menuScreen();
   else if (act === 'shop' && target.dataset.shopSlot) shopAt(target.dataset.shopSlot as Slot);
   else if (act === 'shop') shopScreen();

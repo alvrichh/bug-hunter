@@ -4,6 +4,11 @@
 
 This changelog tracks game-version changes starting with v1.12.55. Earlier releases are not reconstructed here.
 
+## 1.16.53 - 2026-11-25
+
+- The game is played on the portfolio again (`/game.html`) as well as on its own site (https://bug-hunter-game.onrender.com): the portfolio's bridge page is gone. Both run the same code; the portfolio's `bug-hunter/` is the source and the own repository (https://github.com/alvrichh/bug-hunter) is kept in step with it.
+- «Back» (the cover's ✕ and leaving the site) goes to the portfolio's front page from either place (`HOME`).
+
 ## 1.16.52 - 2026-11-25
 
 - Moving a saved game works the way it looks:
